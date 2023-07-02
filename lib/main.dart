@@ -1,4 +1,3 @@
-import 'package:assignment/screen/a_screen.dart';
 import 'package:assignment/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 

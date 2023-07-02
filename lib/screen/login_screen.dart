@@ -1,4 +1,5 @@
 import 'package:assignment/screen/a_screen.dart';
+import 'package:assignment/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
@@ -73,8 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
      );
      
      if(authenticate){
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder) => AaScreen()));
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder) => MainScreen()));
      }
+
      print("Authenticated : $authenticate");
    } on PlatformException catch (e){
      print(e);
