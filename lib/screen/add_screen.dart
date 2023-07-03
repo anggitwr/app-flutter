@@ -70,18 +70,6 @@ class _AddScreenState extends State<AddScreen> {
     }
   }
 
-  // _delete() {
-  //   DatabaseHelper.instance.deleteNote(widget.note!.id!);
-  //
-  //   Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (_) => HomeScreen(),
-  //       ));
-  //
-  //   widget.updateNoteList!();
-  // }
-
   _submit() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -90,7 +78,6 @@ class _AddScreenState extends State<AddScreen> {
       Dataa dataa = Dataa(title: _title, date: _date);
 
       if (widget.dataa == null) {
-        // dataa.status = 0;
         DatabaseDb.instance.insertDataa(dataa);
 
         Navigator.pushReplacement(
@@ -210,44 +197,7 @@ class _AddScreenState extends State<AddScreen> {
                             ),
                           ),
                         ),
-                        // Padding(
-                        //   padding: EdgeInsets.symmetric(vertical: 10.0),
-                        //   child: DropdownButtonFormField(
-                        //     isDense: true,
-                        //     icon: Icon(Icons.arrow_drop_down_circle_rounded),
-                        //     iconSize: 22.0,
-                        //     iconEnabledColor: Theme.of(context).primaryColor,
-                        //     items: _priorities.map((priority) {
-                        //       return DropdownMenuItem(
-                        //         value: priority,
-                        //         child: Text(
-                        //           priority,
-                        //           style: TextStyle(
-                        //             color: Colors.black,
-                        //             fontSize: 18.0,
-                        //           ),
-                        //         ),
-                        //       );
-                        //     }).toList(),
-                        //     style: TextStyle(fontSize: 18.0),
-                        //     decoration: InputDecoration(
-                        //       labelText: 'Priority',
-                        //       labelStyle: TextStyle(fontSize: 18.0),
-                        //       border: OutlineInputBorder(
-                        //         borderRadius: BorderRadius.circular(10.0),
-                        //       ),
-                        //     ),
-                        //     validator: (input) => _priority == null
-                        //         ? 'Please select a priority level'
-                        //         : null,
-                        //     onChanged: (value) {
-                        //       setState(() {
-                        //         _priority = value.toString();
-                        //       });
-                        //     },
-                        //     value: _priority,
-                        //   ),
-                        // ),
+
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 20.0),
                           height: 60.0,

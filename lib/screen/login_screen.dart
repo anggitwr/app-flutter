@@ -1,4 +1,3 @@
-import 'package:assignment/screen/a_screen.dart';
 import 'package:assignment/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

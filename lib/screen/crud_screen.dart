@@ -65,17 +65,6 @@ class _CrudScreenState extends State<CrudScreen> {
                   color: Colors.red,
                 ),
               ),
-              // Checkbox(
-              //   onChanged: (value) {
-              //     note.status = value! ? 1 : 0;
-              //     DatabaseHelper.instance.updateNote(note);
-              //     _updateNoteList();
-              //     Navigator.pushReplacement(
-              //         context, MaterialPageRoute(builder: (_) => HomeScreen()));
-              //   },
-              //   activeColor: Theme.of(context).primaryColor,
-              //   value: note.status == 1 ? true : false,
-              // ),
             ],
           ),
           onTap: () {
@@ -123,12 +112,6 @@ class _CrudScreenState extends State<CrudScreen> {
                 child: CircularProgressIndicator(),
               );
             }
-
-
-            // final int completeNoteCount = snapshot.data!
-            //     .where((Dataa dataa)  => dataa.status == 1)
-            //     .toList()
-            //     .length;
 
             return ListView.builder(
               padding: EdgeInsets.symmetric(vertical: 10.0),
