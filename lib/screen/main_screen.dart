@@ -1,4 +1,5 @@
 import 'package:assignment/screen/a_screen.dart';
+import 'package:assignment/screen/b_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -9,9 +10,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  List<Widget> _widgetOptions = <Widget>[
-    AaScreen(),
-
+  final List<Widget> _widgetOptions = <Widget>[
+    const AaScreen(),
+    const BbScreen(),
   ];
 
   @override
@@ -23,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
         currentIndex: _selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
@@ -44,19 +45,6 @@ class _MainScreenState extends State<MainScreen> {
             activeIcon: Icon(
               Icons.dataset,
               color: Colors.blue,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.show_chart,
-              color: Colors.blueGrey,
-              size: 36,
-            ),
-            label: 'C',
-            activeIcon: Icon(
-              Icons.show_chart,
-              color: Colors.blue,
-              size: 36,
             ),
           ),
         ],

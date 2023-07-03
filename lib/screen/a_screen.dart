@@ -1,10 +1,15 @@
 import 'dart:async';
 
+import 'package:assignment/data/gyro.dart';
+import 'package:assignment/data/magneto.dart';
+import 'package:assignment/screen/c_screen.dart';
 import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:geolocator/geolocator.dart';
+
+import '../data/accelero.dart';
 
 class AaScreen extends StatefulWidget {
   const AaScreen({super.key});
@@ -36,6 +41,12 @@ class _AaScreenState extends State<AaScreen> {
   List<double>? _gyroscopeVls;
 
   List<double>? _magnetVls;
+
+  List<AccelerometerData> _accelerometerData = [];
+  List<GyroscopeData> _gyroscopeData = [];
+  List<MagnetoData> _magnetoData = [];
+  int backAndForth = 0;
+
   @override
   Widget build(BuildContext context) {
 
@@ -120,6 +131,49 @@ class _AaScreenState extends State<AaScreen> {
                 ],
               ),
             ),
+            Text("Test Accelerometer, Gyroscope, Magnetometer"),
+            ElevatedButton(
+              child: const Text("Start"),
+              onPressed: () {
+                if(backAndForth % 2 == 1){
+                  _accelerometerData.clear();
+                  _gyroscopeData.clear();
+                  _magnetoData.clear();
+                }
+                // start a stream that saves acceleroemeterData
+                _streamSubscriptions.add(
+                    accelerometerEvents.listen((AccelerometerEvent event) {
+                      _accelerometerData.add(AccelerometerData(DateTime.now(), <double>[event.x, event.y, event.z]));
+                    })
+                );
+                // start a stream that saves gyroscopeData
+                _streamSubscriptions.add(
+                    gyroscopeEvents.listen((GyroscopeEvent event) {
+                      _gyroscopeData.add(GyroscopeData(DateTime.now(), <double>[event.x, event.y, event.z]));
+                    })
+                );
+                // start a stream that saves acceleroemeterData
+                _streamSubscriptions.add(
+                    accelerometerEvents.listen((AccelerometerEvent event) {
+                      _magnetoData.add(MagnetoData(DateTime.now(), <double>[event.x, event.y, event.z]));
+                    })
+                );
+                backAndForth++;
+              },
+            ),
+            ElevatedButton(
+              child: const Text("Stop"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              onPressed: () {
+                print("length: ${_accelerometerData.length}");
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CcScreen(accelerometerData: _accelerometerData, gyroscopeData: _gyroscopeData, magnetoData: _magnetoData,)),
+                );
+              },
+            ),
           ],
       ),
     );
@@ -146,6 +200,7 @@ class _AaScreenState extends State<AaScreen> {
       if(haspermission){
         setState(() {
           //refresh the UI
+          // _permission = permission;
         });
 
         getLocation();
